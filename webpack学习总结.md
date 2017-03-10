@@ -82,6 +82,5 @@ plugins属性用来实现loader不能实现的功能，具体插件见[官方文
 ```javascript
 plugins: {
     new webpack.BannerPlugin("This is created by Reborn"),//这是使用官方的插件，用于在打包文件顶部中输入信息
-    
 }
 ```
