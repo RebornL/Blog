@@ -18,3 +18,25 @@ luckyNumbers[5] = 12;
 
 int[] copiedLuckyNumbers = Array.copyOf(luckyNumbers, luckyNumbers.length);
 ```
+
+### 不规则数组
+```java
+/*
+1
+1 1
+1 2 1
+1 3 3 1
+...
+*/
+//Java可以实现以上的数组
+int[][] odds = new int[NMAX+1][]
+for(int n = 0; n <= NMAX; n++) {
+    odd[n] = new int[n+1];//分配了列数
+}
+//然后赋值
+for(int n = 0; n < odds.length; n++) {
+    for(int k = 0; k < odds[k].length; k++) {
+        odds[n][k] = lotteryOdds;
+    }
+}
+```
