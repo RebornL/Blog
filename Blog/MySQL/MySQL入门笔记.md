@@ -48,7 +48,23 @@ DISTINCT关键字用来返回不同，不允许重复
 SELECT DISTINCT vent_id FROM pro_table;
 ```
 
+	
 输出结果：![distinct1](distinct1.png)
+
+### LIMIT关键字
+LIMIT关键字用来限制返回的条目数
+```mysql
+SELECT pro_name FROM pro_table LIMIT 5;
+```
+输出结果：![limit1](./limit1.png)
+
+### ORDER BY子句
+ORDER BY子句默认升序排列，加上DESE关键词变成绛序排列。
+```mysql
+SELECT pro_id, pro_price FROM pro_table ORDER BY pro_price;
+SELECT pro_id, pro_price FROM pro_table ORDER BY pro_price DESC;
+```
+输出结果：![order1](./order1.png), ![order2](./order2.png)
 
 ## 过滤数据
 
