@@ -162,7 +162,26 @@ SELECT cust_id FROM prod_table WHERE cust_email IS NULL;
 
 
 
+### 通配符过滤
 
+#### LIKE操作符，%通配符，_通配符
 
+like操作符结合**通配符**可以实现简单模糊检索，通配符有%（适配多个或零个任意字符），_(适配单个字符)
 
+```mysql
+SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '_ ton anvil';
+```
+
+输出结果：![](./like1.png)
+
+```mysql
+SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '% ton anvil';
+```
+
+输出结果：![](./like2.png)
+
+> 注意事项：
+>
+> 1. 通配符操作少用，因为通配符操作耗时相对较长
+> 2. 通配符尽量不要开头，因为如果放在开头的话，搜索难度变大，搜索的时间就会变得更长
 
