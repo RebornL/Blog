@@ -6,6 +6,8 @@
 
 **Author: Reborn**
 
+**Update:2018-03-01**
+
 ---------------------------------
 
 [TOC]
@@ -13,6 +15,8 @@
 ## 前言
 
 MySQL的获取数据基本方式，以及简单筛选和过滤数据的操作。
+
+更新：数据库表的创建
 
 ## 检索数据
 
@@ -184,4 +188,80 @@ SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '% ton anvil';
 >
 > 1. 通配符操作少用，因为通配符操作耗时相对较长
 > 2. 通配符尽量不要开头，因为如果放在开头的话，搜索难度变大，搜索的时间就会变得更长
+
+
+
+## 创建操纵表格
+
+### CREATE关键字
+
+create table语句创建表格，列与列之间用逗号分开，primary key指定表的主键，指定一列，表明该列的值唯一，指定多列，表明多列的组合必须唯一；auto_increment自增，每个表中只允许一列为AUTO INCREMENT，而且必须成为索引；NOT NULL表示该列必须有值，否则在插入和更新行，将会出错。创建一个customers表
+
+```mysql
+CREATE TABLE customers (
+	cust_id      int      NOT NULL AUTO_INCREMENT,
+  	cust_name    char(50) NOT NULL,
+  	cust_address char(50) NULL,
+  	cust_city    char(50) NULL,
+  	cust_state   char(5)  NULL,
+  	cust_zip     char(10) NULL,
+  	cust_country char(50) NULL,
+  	cust_contact char(50) NULL,
+  	cust_email   char(50) NULL,
+  	PRIMARY KEY (cust_id)
+)ENGINE=InnoDB;
+```
+
+#### DEFAULT关键
+
+default关键字可以给NOT NULL列设置默认值
+
+```mysql
+CREATE TABLE customers (
+	cust_id      int      NOT NULL AUTO_INCREMENT,
+  	cust_name    char(50) NOT NULL,
+  	cust_address char(50) NULL,
+  	cust_city    char(50) NULL,
+  	cust_state   char(5)  NULL DEFAULT ‘CN’,
+  	cust_zip     char(10) NULL,
+  	cust_country char(50) NULL,
+  	cust_contact char(50) NULL,
+  	cust_email   char(50) NULL,
+  	PRIMARY KEY (cust_id)
+)ENGINE=InnoDB;
+```
+
+#### 引擎
+
+- InnoDB是一个可靠的事务处理引擎，不支持全文本搜索
+- MEMORY功能等同MyISAM，数据存储在内存中，速度快，适合临时表
+- MyISAM性能极高，支持全文本搜索，但不支持事务处理
+
+### ALTER关键字
+
+ALTER TABLE用于更新表，常用于增加新的列和定义外键。
+
+```mysql
+ALTER TABLE vendors ADD vend_phone CHAR(20);#增加新的列
+ALTER TABLE vendor DROP COLUMN vend_phone;#删除新增的列
+ALTER TABLE orderitems ADD CONSTRAINT fk_orderitems_orders FOREIGN KEY (order_num) REFERENCES orders (order_num);#定义外键
+```
+
+### DROP关键字
+
+DROP TABLE删除表
+
+```mysql
+DROP TABLE customers；
+```
+
+### RENAME关键字
+
+rename table给表进行重命名，可以同时给多个表进行重命名
+
+```mysql
+RENAME TABLE backup_customers TO customers,
+			 backup_vendors TO vendors，
+			 backup_products TO products;
+```
 
