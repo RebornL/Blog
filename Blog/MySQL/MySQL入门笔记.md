@@ -6,7 +6,7 @@
 
 **Author: Reborn**
 
-**Update:2018-03-01**
+**Update:2018-03-03**
 
 ---------------------------------
 
@@ -14,13 +14,15 @@
 
 ## 前言
 
-MySQL的获取数据基本方式，以及简单筛选和过滤数据的操作。
+*MySQL的基本增删改查操作。*
 
-更新：数据库表的创建
+> MySQL的获取数据基本方式，以及简单筛选和过滤数据的操作。
+
+> 更新：数据库表的创建，数据的插入更新和删除。
 
 ## 检索数据
 
-### select语句
+### select检索数据
 
 从prod_table选取prod_name这一列：
 
@@ -76,7 +78,7 @@ SELECT prod_id, prod_price FROM prod_table ORDER BY prod_price DESC;
 
 ## 过滤数据
 
-### WHERE关键字
+### WHERE筛选数据
 
 where关键字，进行条件筛选，操作符有大于>，小于<，不等于<>(或者!=)等等，对于串类型，需要加上''来限定，数值类型则不需要
 
@@ -193,7 +195,7 @@ SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '% ton anvil';
 
 ## 创建操纵表格
 
-### CREATE关键字
+### CREATE创建表
 
 create table语句创建表格，列与列之间用逗号分开，primary key指定表的主键，指定一列，表明该列的值唯一，指定多列，表明多列的组合必须唯一；auto_increment自增，每个表中只允许一列为AUTO INCREMENT，而且必须成为索引；NOT NULL表示该列必须有值，否则在插入和更新行，将会出错。创建一个customers表
 
@@ -212,7 +214,7 @@ CREATE TABLE customers (
 )ENGINE=InnoDB;
 ```
 
-#### DEFAULT关键
+#### DEFAULT默认值
 
 default关键字可以给NOT NULL列设置默认值
 
@@ -237,7 +239,7 @@ CREATE TABLE customers (
 - MEMORY功能等同MyISAM，数据存储在内存中，速度快，适合临时表
 - MyISAM性能极高，支持全文本搜索，但不支持事务处理
 
-### ALTER关键字
+### ALTER更新表
 
 ALTER TABLE用于更新表，常用于增加新的列和定义外键。
 
@@ -247,7 +249,7 @@ ALTER TABLE vendor DROP COLUMN vend_phone;#删除新增的列
 ALTER TABLE orderitems ADD CONSTRAINT fk_orderitems_orders FOREIGN KEY (order_num) REFERENCES orders (order_num);#定义外键
 ```
 
-### DROP关键字
+### DROP删除表
 
 DROP TABLE删除表
 
@@ -265,3 +267,81 @@ RENAME TABLE backup_customers TO customers,
 			 backup_products TO products;
 ```
 
+## 插入和更新数据
+
+### INSERT插入数据
+
+insert语句用于给数据库插入新的数据，可以插入一行，也可以插入多行，编写时，最好要指定需要插入值的列及其次序。此外表中的列允许NULL值时，可以忽略插入；另外由于SQL中频繁的操作的SELECT语句，而且INSERT语句可能会很耗时，当检索比较重要时，可以给INSERT语句加上LOW PRIORITY关键词。
+
+```mysql
+#编写安全的MySQL语句
+INSERT INTO customers(cust_name,
+                     cust_contact,
+                     cust_email,
+                     cust_address,
+                     cust_city)
+              VALUES('Pep E.LaPew',
+                    NULL,
+                    NULL,
+                    '100 Main Street',
+                    'Los Angeles');
+                    
+#插入多行
+INSERT INTO customers(cust_name,
+                     cust_contact,
+                     cust_email,
+                     cust_address,
+                     cust_city)
+              VALUES('Pep E.LaPew',
+                    NULL,
+                    NULL,
+                    '100 Main Street',
+                    'Los Angeles')，
+               VALUES('M. Martian',
+                     NULL,
+                     'test@email.com',
+                     '42 Galaxy Way',
+                     'New York');
+```
+
+### 插入检索出的数据
+
+INSERT SELECT语句，SELECT和INSERT的所用列名不一定一致，MySQL主要根据位置进行填充
+
+```mysql
+INSERT INTO customers(cust_id,
+                     cust_contact,
+                     cust_email,
+                     cust_name,
+                     cust_city)
+             SELECT cust_id,
+             		cust_contact,
+             		cust_email,
+             		cust_name,
+             		cust_city
+             	FROM custold;
+```
+
+从custold表中检索出数据，插入到customers表中。
+
+
+
+## 更新和删除数据
+
+### UPDATE更新数据
+
+update语句可以更新特定行也可以更新所有行，通过SET命令更新列的值，使用update务必小心，避免更新所有行，因此最好设置好WHERE语句。
+
+```mysql
+UPDATE customers SET cust_email = 'elmer@fudd.com', cust_state='CN' WHERE cust_id=10005;
+```
+
+### DELETE删除数据
+
+delete语句删除某行或所有行的数据，通过设置WHERE语句进行限定，比较安全。
+
+```mysql
+DELETE FROM customers WHERE cust_id = 10005;
+```
+
+> DELETE删除整行的数据，若要删除某一列的数据，需要使用UPDATE语句，将某一列的设置为NULL即可
