@@ -4,7 +4,7 @@
 
 ## 前言
 
-最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是已经很不稳定，有时候会自动下线，于是就决定把它刷了，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大，在这里推荐要给路由器刷机的人，买HC5661，固件更多。本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神[ptpt52](http://www.right.com.cn/forum/space-uid-372524.html)给这台HC5661A编译了一个他自己定制的[LEDE固件](http://www.right.com.cn/forum/forum.php?mod=viewthread&tid=212965&extra=page%3D1&page=1)，还挺好用的，推荐小白使用。
+最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是很不稳定，有时候会自动下线，于是就决定把它刷成LEDE，而且可玩性更高，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大。在这里推荐要给路由器刷机的人，买HC5661，固件更多。本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神[ptpt52](http://www.right.com.cn/forum/space-uid-372524.html)给这台HC5661A编译了一个他自己定制的[LEDE固件](http://www.right.com.cn/forum/forum.php?mod=viewthread&tid=212965&extra=page%3D1&page=1)，还挺好用的，推荐小白使用。
 
 ## 刷机
 
