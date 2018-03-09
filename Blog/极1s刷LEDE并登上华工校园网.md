@@ -12,7 +12,7 @@
 
 ### 刷Breed
 
-- 先阅读一下[Breed介绍页面](http://www.right.com.cn/forum/thread-161906-1-1.html) 了解一下breed该怎么使用及注意事项，hackpascal大神说的听详细的
+- 先阅读一下[Breed介绍页面](http://www.right.com.cn/forum/thread-161906-1-1.html) 了解一下breed该怎么使用及注意事项，hackpascal大神说的挺详细的
 - 其次在https://breed.hackpascal.net/ ，下载适合自己的路由器的Breed固件，我的为[breed-mt7628-hiwifi-hc5661a.bin](https://breed.hackpascal.net/breed-mt7628-hiwifi-hc5661a.bin) 
 - 登录极路由后台（当然这里已经默认你已经安装了开发者模式插件，获取了root），windows平台使用putty等工具，Linux下使用ssh登录
 
