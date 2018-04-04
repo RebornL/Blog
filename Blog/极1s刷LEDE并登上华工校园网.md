@@ -1,5 +1,15 @@
 # 极1S刷LEDE
 
+------
+
+Author: Reborn
+
+Update-Date: 2018-03-10
+
+-----
+
+
+
 [TOC]
 
 ## 前言
@@ -36,16 +46,29 @@ mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin
 
 - 最后写入成功会显示reboot，等个几分钟，然后按照[Breed介绍页面](http://www.right.com.cn/forum/thread-161906-1-1.html) 中使用breedenter进入breed界面
 
+  ![](../images/luyou/breed界面.PNG)
+
 
 
 ### 刷LEDE固件
 
 这里使用的LEDE固件为ptpt52编译的[natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin](https://router-sh.ptpt52.com/rom/natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin) 。
 
-- 首先，点击breed的web界面上的固件备份，把EEROM和编程器固件都备份一下，防止刷机失败，还原方式先恢复EEROM，再恢复编程器固件即可。
-- 然后点击固件更新，在固件一行点击选择natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin，闪存布局一般保持默认，若担心，最好上网查询一下自己路由器的闪存布局，极1s保存默认的公版0x500000即可，然后点击**上传**即可。
-- 等待更新结束，重启路由器后，ptpt52编译的LEDE登录网址为192.168.15.1，帐号root，密码admin
+- 首先，点击breed的web界面上的固件备份，把EEROM和编程器固件都备份一下，防止刷机失败，还原方式先恢复EEROM，再恢复编程器固件即可。![](../images/luyou/breed备份.PNG)
+
+- 然后点击固件更新，在固件一行点击选择natcap-3.0.0-build201803060646-ramips-mt76x8-hc5661a-squashfs-sysupgrade.bin，闪存布局一般保持默认，若担心，最好上网查询一下自己路由器的闪存布局，极1s保存默认的公版0x500000即可，然后点击**上传**即可。![](../images/luyou/breed刷机.PNG)
+
+  ![](../images/luyou/breed刷机2.PNG)
+
+  ![](../images/luyou/breed刷机3.PNG)
+
+  ![](../images/luyou/breed刷机4.PNG)
+
+- 等待更新结束，重启路由器后，ptpt52编译的LEDE登录网址为192.168.15.1，帐号root，密码admin![](../images/luyou/LEDE登陆web界面.PNG)
+
 - 进入LEDE的luci界面，这个时候还需要开启ssh的root登录，在系统选项下开启，不会操作的，可以下载ptpt52提供的[设置包](http://www.right.com.cn/forum/thread-213900-1-1.html) ,进入路由器管理界面，选择 上传备份 恢复配置，重启 即可。
+
+- ![](../images/luyou/勾选ssh登陆.PNG)
 
 ### 安装scutclient
 
@@ -62,7 +85,11 @@ opkg install /tmp/luci-app-scutclient_git-17.105.54231-8cd958a-1_all.ipk
 opkg install /tmp/scutclient_2.2-20170325-1_mipsel_24kc.ipk
 ```
 
-安装完成后，刷新luci界面，这时候就会出现华工上网客户端设置的选项，这时候按照选项step1，step2设置完成即可上网。具体步骤详看**华工路由器新手教程V12**中的基础设置6。提供的[百度云链接](https://pan.baidu.com/s/1ahoD631-pB8DrlRVoqwEwg) ，密码rqpi。
+![](../images/luyou/ssh登录上路由器终端.PNG)![](../images/luyou/安装scutclient.PNG)![](../images/luyou/安装scutclient的luci界面.PNG)
+
+安装完成后，刷新luci界面，这时候就会出现*华南理工大学客户端*设置的选项，这时候按照选项step1，step2设置完成即可上网。具体步骤详看**华工路由器新手教程V12**中的基础设置6。提供的[百度云链接](https://pan.baidu.com/s/1ahoD631-pB8DrlRVoqwEwg) ，密码rqpi。
+
+![](../images/luyou/luci界面配置scutclient.PNG)
 
 ### ipv6设置
 
@@ -70,4 +97,4 @@ opkg install /tmp/scutclient_2.2-20170325-1_mipsel_24kc.ipk
 
 
 
-> 另外文中的图，日后再补！！！
+> ~~另外文中的图，日后再补！！！~~
