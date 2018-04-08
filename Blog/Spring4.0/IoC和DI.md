@@ -68,7 +68,16 @@ public class Director {
 }
 ```
 
+>构造器注入和setter方法注入区别：构造器注入不可缺少，否则编译直接出错；setter方法注入，若为空，则会在运行期间出现空指针异常，无法正常运行。
+>
+>可以通过在xml配置文件中增加*<<context:annotation-config/>>* 给setter注入添加一个require的注解，避免空指针异常。
+
+
+
+
+
 #### 接口注入
+
 將調用類的所有依賴注入的方法抽取到一個接口，調用類實現該接口進行依賴注入。
 
 實現的效果，其實與屬性注入並無區別，反而顯得比屬性注入稍麻煩。
@@ -118,6 +127,28 @@ Spring通過配置文件或註解描述類和類之間的依賴關係，自動�
 </beans>
 ```
 最後可以通過new XmlBeanFactory("beans.xml")等方式啓動容器，Spring會根據配置文件的描述信息，自動實例化Bean並完成依賴關係的裝配，從容器中即可返回準備就緒的Bean實例，後續可以直接使用。
+
+
+
+### 注解方式注入
+
+@Component注册组建类，spring自动创建对应的bean
+
+@Configuration注册一个配置类，使用@ComponentScan告诉spring容器需要扫描的包并自动装配
+
+@Autowired自动注入
+
+@RunWith(SpringJUnit4ClassRunner.class)便于测试的时候自动创建Spring的上下文
+
+@ContextConfiguration(classes=xxx.class)告诉spring加载什么配置文件
+
+
+
+使用Java Config，只需要创建一个配置类，在配置类中编写方法，返回要注入的对象（可以为第三方库的对象），并给方法加上@Bean注解，告诉Spring为返回的对象创建实例。
+
+> 以下图来自bridgeforyou，侵权即删。
+
+![三种注入方式的区别](https://pic2.zhimg.com/v2-18515e584368359cfd00f2899740c77a_r.jpg)
 
 
 ### java反射機制

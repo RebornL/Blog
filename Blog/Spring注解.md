@@ -54,9 +54,9 @@ Bean：
 
 ![bean](./Spring4.0/bean-property.png)
 
-Spring配置元数据：
+## Spring配置元数据：
 
-XML方式：
+### XML方式：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -73,11 +73,25 @@ XML方式：
 </beans>
 ```
 
-基于注解的配置方式：
+### 基于注解的配置方式：
 
-基于Java的配置方式：
+- @Require：应用于bean属性的setter方法。
+- @Autowired：应用于bean属性的setter方法和非setter方法，构造函数和属性。
+- @Qualifier：通过指定确切的将被连线的bean，通常和@Autowired一起使用来删除混乱。
+- JSR-250 Annotation
 
+在IoC容器可以看到实例。
 
+### 基于Java的配置方式：
+
+以上两种方式都是需要配置xml的基础上编写spring bean，但是基于java config，可以在不用编写xml上完成spring bean的配置。
+
+- @Configuration：表明该类可以使用Spring IoC容器作为bean的定义来源
+- @Bean：将方法名作为bean的id
+- @Import(xxx.class)：允许加载另外一个配置类@Bean定义
+- 生命周期回调：@Bean(initMethod="xxx", destoryMethod="xxx")
+
+### IoC容器
 
 Bean的scope属性：
 
@@ -200,6 +214,175 @@ public class MainApp {
    <bean class="com.tutorialspoint.InitHelloWorld" order="..可以用来定义执行前后的顺序..."/>
 
 </beans>
+```
+
+
+
+依赖注入（DI）：
+
+- 构造器式注入：依赖性更强，传递参数可通过按顺序，传递参数属性亦或着索引。
+
+```java
+
+```
+
+
+
+```xml
+
+```
+
+
+
+- setter方式注入：可解耦合性更高
+
+```java
+public class Foo {
+   public Foo(Bar bar, Baz baz) {
+      // ...
+   }
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id="john-classic" class="com.example.Person">
+      <property name="bar" ref="bar"/>
+   </bean>
+
+   <bean name="bar" class="com.example.Bar">
+   </bean>
+
+</beans>
+```
+
+注入内部Bean方式
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id="john-classic" class="com.example.Person">
+       <property name="bar" ref="bar">
+       		<bean name="bar" class="com.example.Bar"></bean>
+       </property>
+   </bean>
+</beans>
+```
+
+
+
+集合类的注入有特定赋值方式，具体可见这个[链接](https://www.w3cschool.cn/wkspring/kp5i1ico.html)。
+
+
+
+以上的xml配置，均为显示注入依赖，Beans还可以通过指定bean的autowire属性为一个bean定义一个自动装配的模式：![beans模式](./Spring4.0/bean-way.png)
+
+
+
+@Required注解
+
+```java
+import org.springframework.beans.factory.annotation.Required;
+public class Student {
+    private Integer age;
+    
+    @Required
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+    public Integer getAge() {
+        return age;
+    }
+}
+```
+
+对应的xml文件
+
+```xml
+
+```
+
+对应的property一定要写，否则会报以下错误
+
+> Property 'age' is required for bean 'student'
+
+
+
+@Autowired注解
+
+- 可以实现bean的autowired属性的功能
+- 可以去除setter方法，直接给需要注入的属性加上@Autowired注解即可
+- 可以用在构造器方法上
+- 默认此依赖是必须，可以通过@Autowired(required=false)关闭默认行为
+
+
+
+@Qualifier("")：指定具体对象注入
+
+```java
+//Profile.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+public class Profile {
+   @Autowired
+   @Qualifier("student1")//指定注入id为student1的bean
+   private Student student;
+   public Profile(){
+      System.out.println("Inside Profile constructor." );
+   }
+   public void printAge() {
+      System.out.println("Age : " + student.getAge() );
+   }
+   public void printName() {
+      System.out.println("Name : " + student.getName() );
+   }
+}
+```
+
+```java
+//MainApp.java
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      Profile profile = (Profile) context.getBean("profile");
+      profile.printAge();
+      profile.printName();
+   }
+}
+```
+
+```xml
+
+```
+
+输出结果：
+
+```
+Inside Profile constructor.
+Age : 11
+Name : Zara
+```
+
+
+
+
+### Java Config方式配置示例
+
+```java
+
 ```
 
 
