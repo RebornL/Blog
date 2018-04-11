@@ -10,7 +10,7 @@
 
 
 
-Spring技术：
+## Spring技术：
 
 依赖注入（DI）：控制反转（IOC）的一种具体实现
 
@@ -90,6 +90,7 @@ Bean：
 - @Bean：将方法名作为bean的id
 - @Import(xxx.class)：允许加载另外一个配置类@Bean定义
 - 生命周期回调：@Bean(initMethod="xxx", destoryMethod="xxx")
+- @Bean注解下可以使用@Scope注解指定Bean的范围
 
 ### IoC容器
 
@@ -223,13 +224,46 @@ public class MainApp {
 - 构造器式注入：依赖性更强，传递参数可通过按顺序，传递参数属性亦或着索引。
 
 ```java
-
+public class TextEditor {
+   private SpellChecker spellChecker;
+   private String name;
+   public TextEditor( SpellChecker spellChecker, String name ) {
+      this.spellChecker = spellChecker;
+      this.name = name;
+   }
+   public SpellChecker getSpellChecker() {
+      return spellChecker;
+   }
+   public String getName() {
+      return name;
+   }
+   public void spellCheck() {
+      spellChecker.checkSpelling();
+   }
+}
 ```
 
 
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for textEditor bean -->
+   <bean id="textEditor" class="com.tutorialspoint.TextEditor" 
+      autowire="constructor">
+      <constructor-arg value="Generic Text Editor"/>
+   </bean>
+
+   <!-- Definition for spellChecker bean -->
+   <bean id="SpellChecker" class="com.tutorialspoint.SpellChecker">
+   </bean>
+
+</beans>
 ```
 
 
@@ -382,8 +416,151 @@ Name : Zara
 ### Java Config方式配置示例
 
 ```java
+import org.springframework.context.annotation.*;
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}
 
+//以上代码等同于如下的xml配置
+<beans>
+   <bean id="helloWorld" class="com.tutorialspoint.HelloWorld" />
+</beans>
+```
+
+```java
+//mainApp.java
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+      new AnnotationConfigApplicationContext(HelloWorldConfig.class);
+	 /*也可以通过如下方式加载多个配置文件
+	  ApplicationContext ctx = new AnnotationConfigApplicationContext();
+	  ctx.register(AppConfig.class, OtherConfig.class);
+   	  ctx.register(AdditionalConfig.class);
+   	  ctx.refresh();
+	 */	
+      HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+
+      helloWorld.setMessage("Hello World!");
+      helloWorld.getMessage();
+   }
+}
 ```
 
 
 
+## Spring框架的AOP
+
+AOP：面向切面编程，横切关注点是指跨一个应用程序多个点的功能，例如日志记录、审计、安全性和缓存等等。
+
+#### 基于XML配置的实例
+
+```xml
+<aop:config>
+   <aop:aspect id="myAspect" ref="aBean">
+      <aop:pointcut id="businessService"
+         expression="execution(* com.xyz.myapp.service.*.*(..))"/>
+      <!-- a before advice definition -->
+      <aop:before pointcut-ref="businessService" 
+         method="doRequiredTask"/>
+      <!-- an after advice definition -->
+      <aop:after pointcut-ref="businessService" 
+         method="doRequiredTask"/>
+      <!-- an after-returning advice definition -->
+      <!--The doRequiredTask method must have parameter named retVal -->
+      <aop:after-returning pointcut-ref="businessService"
+         returning="retVal"
+         method="doRequiredTask"/>
+      <!-- an after-throwing advice definition -->
+      <!--The doRequiredTask method must have parameter named ex -->
+      <aop:after-throwing pointcut-ref="businessService"
+         throwing="ex"
+         method="doRequiredTask"/>
+      <!-- an around advice definition -->
+      <aop:around pointcut-ref="businessService" 
+         method="doRequiredTask"/>
+   ...
+   </aop:aspect>
+</aop:config>
+<bean id="aBean" class="...">
+...
+</bean>
+```
+
+#### 使用@Aspect
+
+在xml配置中只需要配置bean即可，以及在xml上加上<<aop:aspectj-autoproxy/>>配置
+
+```java
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+@Aspect
+public class Logging2 {
+    /** Following is the definition for a pointcut to select
+     *  all the methods available. So advice will be called
+     *  for all the methods.
+     */
+    @Pointcut("execution(* main.java.com.lqb.demo1.aop.*(..))")
+    private void selectAll(){}
+    /**
+     * This is the method which I would like to execute
+     * before a selected method execution.
+     */
+    @Before("selectAll()")
+    public void beforeAdvice(){
+        System.out.println("Going to setup student profile.");
+    }
+    /**
+     * This is the method which I would like to execute
+     * after a selected method execution.
+     */
+    @After("selectAll()")
+    public void afterAdvice(){
+        System.out.println("Student profile has been setup.");
+    }
+    /**
+     * This is the method which I would like to execute
+     * when any method returns.
+     */
+    @AfterReturning(pointcut = "selectAll()", returning="retVal")
+    public void afterReturningAdvice(Object retVal){
+        System.out.println("Returning:" + retVal.toString() );
+    }
+    /**
+     * This is the method which I would like to execute
+     * if there is an exception raised by any method.
+     */
+    @AfterThrowing(pointcut = "selectAll()", throwing = "ex")
+    public void AfterThrowingAdvice(IllegalArgumentException ex){
+        System.out.println("There has been an exception: " + ex.toString());
+    }
+}
+```
+
+
+
+## Spring MVC
+
+- **模型**封装了应用程序数据，它们一般有POJO组成
+- **视图**用于呈现模型数据，一般由它生成客户端（浏览器）可以解析的HTML代码
+- **控制器**用于处理用户请求，并返回合适的数据给视图
+
+整体框架围绕DispatcherServlet设计，![](https://img.w3cschool.cn/attachments/image/wk/wkspring/mvc1.png)
+
+(此图来自w3cschool, 侵权即删)
+
+
+
+spring mvc通过web.xml，配置url请求和处理
