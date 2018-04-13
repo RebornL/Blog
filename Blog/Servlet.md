@@ -81,3 +81,58 @@ servlet是用Java编写的服务器端程序，主要功能在于交互式地浏
   ```
 
   ​
+
++ 通过设置response.setCharacterEncoding("UTF-8"); response.setContentType("text/html;charset=utf-8");使得页面中文不为乱码
+
+
+
+#### servlet应用
+
+文件下载，生成随机数图片，数据压缩上传等等，详情见这个[链接](https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&mid=2247484081&idx=2&sn=06d118f2976a1f2cf98e5fca47af252a&chksm=ebd743b0dca0caa6895f25f0eaaac66bec5f5f8141e1a869bfc8562f8c4e933ef8c1fe807dfd#rd)
+
+
+
+#### HttpServletRequest
+
+#### HttpServletResponse
+
+
+
+### 会话
+
+#### Cookie
+
+由于Http协议是无状态协议，不会保存数据，因此每次建立链接，服务器都会重开新的线程进行处理。为了让服务器能够识别客户端，W3C提出了Cookie用来保存客户端信息。此时，Cookie就相当于通行证，服务器端能够读取Cookie信息来识别客户端。
+
+
+
+Cookie的流程：浏览器访问服务器，**如果服务器需要记录该用户的状态，就使用response向浏览器发送一个Cookie，浏览器会把Cookie保存起来。当浏览器再次访问服务器的时候，浏览器会把请求的网址连同Cookie一同交给服务器**。
+
+
+
+request可以通过getCookie获取Cookie对象，response可以通过addCookie在其响应头添加set-cookie头字段。
+
+Cookie特点：
+
+- 不可跨域名性
+- 保存中文，需要使用URLEncoder.encode进行编码，读取时需要使用URLEncoder.decode进行解码。
+- setMaxAge设置过期时间，setDomain设置可获取Cookie的域名，设置Cookie的secure属性为true则只允许在HTTPS和SSL等安全协议中传输Cookie
+
+
+
+#### Session
+
+session是另外一种记录浏览状态的机制，与Cookie的区别，Session存储在服务器端，Cookie存储在客户端；Session可以存储对象，Cookie只能存储字段。
+
+
+
+Session比Cookie更为好用，在服务器端可以作为一种域对象，让servlet相互通信。
+
+- setMaxInactiveInterval()方法设置有效期
+- addAttribute()，给session添加属性
+- 通过JSESSIONID来识别不同客户端，JSESSIONID存储在Cookies中，当Cookie被禁止时，通过**URL重写**来解决JSESSIONID存储
+  - **encodeURL(String url)**
+  - **encodeRedirectURL(String url)**
+
+#### 转发和重定向
+
