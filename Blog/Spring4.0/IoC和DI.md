@@ -322,3 +322,31 @@ BeanFactory是Spring最核心的接口，提供高级IoC配置机制，实现不
 ![ClassPathXmlApplicationContext](./ClassPathXmlApplicationContext.png)
 
 除了常见ClassPathXmlApplicationContext加载xml的配置文件之外，spring还提供一种java config的配置方式，使用注解和类编写方式，可以让开发者更好的控制。
+
+```java
+@Configuration//表示一个配置信息提供类
+public class Beans {
+    @Bean//定义一个Bean
+    public Car buildCar() {
+        Car car = new Car();
+        car.setBrand("CA72");
+        car.setMaxSpeed(200);
+        return car;
+    }
+}
+```
+
+启动Configuration注解的配置类
+
+```java
+public class AnnotationApplicationContext {
+    public static void main(String[] args) {
+        //加载带有Configuration的POJO装载Bean的配置
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(Beans.class);
+    	Car car = ctx.getBean("car", Car.class);
+    }
+}
+```
+
+
+
