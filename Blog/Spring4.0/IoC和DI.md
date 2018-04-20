@@ -254,3 +254,71 @@ Class类没有public的构造方法，Class对象是在装载类是有JVM通过�
 - Constructor：类的构造函数反射类，通过Class对象getConstructors()获取所有构造函数反射对象数组，getConstructor(Class... parameterTypes)获取特定参数的构造函数反射对象。构造器对象的newInstance()方法可以创建一个实例对象。
 - Method：类方法的反射类，Class对象getDeclaredMethods()获取所有方法反射类对象数组Method[]。再通过invoke方法进行调用。
 - Field：类的成员变量的反射类，Class对象getDeclaredFields方法获取类的成员变量反射对象数组。通过Field的set方法对成员变量进行值设置。
+
+
+
+### Spring资源访问
+
+#### Resource资源抽象接口
+
+接口主要方法：
+
+- boolean exists()：资源是否存在
+- boolean isOpen()：资源是否打开
+- URL getURL() throws IOException：返回对应的URL对象
+- File getFile() throw IOException：返回对应的File对象
+- InputStream getInputStream() throws IOException：返回资源对应的输入流
+
+具体的实现有ByteArrayResource（二进制数组资源），ClassPathResource（类路径下的资源），FileSystemResource（文件系统资源），InputStreamResource（以输入流返回表示资源），ServletContextResource（为访问Web容器上下文中的资源设计的类，以web应用为根目录），UrlResource（疯转Java中URL，可以访问任意资源）
+
+```java
+public class ResourceTest {
+    public static void main(String[] args) {
+        try {
+            String filePath = "/home/xxx/chapter/Web/WEB-INF/classes/conf/file1.txt";
+            Resource res1 = new FileSystemResource(filePath);
+            //以类路径方式加载文件
+            Resource res2 = new ClassPathResource("conf/file1.txt");
+            
+            InputStream ins1 = res1.getInputStream();
+            InputStream ins2 = res2.getInputStream();
+            
+            System.out.println("res1:"+res1.getFilename());
+            System.out.println("res2:"+res2.getFilename());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+#### 资源地址表达式
+
+![resource-lambda](./resource-lambda.png)
+
+> classpath:与classpath*: 的区别：前者只会在第一个加载的包下去查找，而后者会扫描所有这些JAR包和类路径下出现的包名。
+
+
+
+#### 资源加载器（ResourceLoader）
+
+ResourceLoader接口定义了一个getResource(String location)方法，ResourcePatternResolver实现ResourceLoader接口，并且定义一个新的方法getResources()方法。Spring则提供了一个标准实现类**PathMatchingResourcePatternResolver**
+
+```java
+ResourcePatternResolver resolver = new PathMatchResourcePatternResolver();
+//加载所有类包com.baobaotao（及子包）下的以xml为后缀的资源
+Resource[] resources = resolver.getResources("classpath*:com/baobaotao/**/*.xml");
+for(Resource resource: resources) {
+    System.out.println(resource.getDescription());
+}
+```
+
+
+
+### BeanFactory和ApplicationContext
+
+BeanFactory是Spring最核心的接口，提供高级IoC配置机制，实现不同类型的Java对象，底层是基于Java的反射机制实现；ApplicationContext则是基于BeanFactory上建立的，便于创建应用，面向开发者。
+
+![ClassPathXmlApplicationContext](./ClassPathXmlApplicationContext.png)
+
+除了常见ClassPathXmlApplicationContext加载xml的配置文件之外，spring还提供一种java config的配置方式，使用注解和类编写方式，可以让开发者更好的控制。
