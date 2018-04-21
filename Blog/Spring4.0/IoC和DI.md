@@ -348,5 +348,31 @@ public class AnnotationApplicationContext {
 }
 ```
 
+也可以通过web.xml方式来启动@Configuration配置类
+
+```xml
+<!--指定context参数-->
+<context-param>
+	<param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+</context-param>
+<!--指定标注@Configuration的配置类-->
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+    <param-value>com.baobaotao.AppConfig1,com.baobaotao.AppConfig2</param-value>
+</context-param>
+<!--ContextLoaderListener将根据上面配置启动Spring容器-->
+<listener>
+	<listener-class>
+    	org.springframeworkwork.web.context.ContextLoaderListener
+    </listener-class>
+</listener>
+```
 
 
+
+#### Bean的生命周期
+
+![](./bean-lifecircle.png)
+
+![](./bean-lifecircle2.png)
