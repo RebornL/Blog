@@ -376,3 +376,10 @@ public class AnnotationApplicationContext {
 ![](./bean-lifecircle.png)
 
 ![](./bean-lifecircle2.png)
+
+
+
+#### spring容器，Bean配置信息，Bean实现类及应用程序的关系
+
+![](./springAndBean.png)
+
