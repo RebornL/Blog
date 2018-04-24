@@ -383,3 +383,31 @@ public class AnnotationApplicationContext {
 
 ![](./springAndBean.png)
 
+### Spring的技术内幕
+
+spring的AbstractApplicationContext为ApplicationContext的抽象类，该抽象类的refresh()方法定义容器在加载配置文件后各种处理过程。
+
+```java
+//refresh方法内部：
+//1.初始化Bean Factory
+ConfigurableListableBean beanFactory = getBeanFactory();
+...
+//2.调用工厂后处理器
+invokeBeanFactoryPostProcessors();
+//3.注册bean后处理器
+registerBeanPostProcessor();
+//4.初始化消息源
+initMessageSource();
+//5.初始化应用上下文事件广播器
+initApplicationEventMulticaster();
+//6.初始化其他特殊的Bean：交给具体子类实现
+onRefresh();
+//7.注册事件监视器
+registerListeners();
+//8.初始化所有单实例的Bean，将其放到缓存中，使用懒初始化模式的Bean例外
+finishBeanFactoryInitialization(beanFactory);
+//9.完成刷新并发布容器刷新时间
+finishRefresh();
+```
+
+![](./ioc-waterline.png)
