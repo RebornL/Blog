@@ -1,3 +1,3 @@
 git add .
-git commit -m "upload the lastest md"
+git commit -m "daily update and backup"
 git push origin master

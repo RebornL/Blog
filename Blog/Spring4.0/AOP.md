@@ -214,4 +214,58 @@ public class ToolTest {
 }
 ```
 
-AspectJ在Spring中的使用，同样是采用xml配置文件，在Bean的xml中引入aop命名空间，加上**<aop:aspectj-autoproxy />**，这会自动为Spring容器中那些匹配@Aspect切面的Bean创建代理，完成切面织入。
+AspectJ在Spring中的使用，同样是采用xml配置文件，在Bean的xml中引入aop命名空间，加上**<aop:aspectj-autoproxy />**（其中有个proxy-target-class属性，默认为false采用JDK动态代理技术，为true时采用CGLib动态代理），这会自动为Spring容器中那些匹配@Aspect切面的Bean创建代理，完成切面织入。
+
+
+
+#### AspectJ语法
+
+![1524642633627](E:\Files\Blog\Blog\Spring4.0\aspectj-program.png)
+
+以上表中所展示的@Aspect函数可以在Spring中，其他未在表上展示的@Aspect函数一般都不能在Spring上使用，否则会报IllegalArgumentException异常。
+
+
+
+**关于通配符：**
+
+- *：匹配任意字符，只能匹配上下文中一个元素
+- ..：匹配任意字符，可以匹配上下文中多个元素，表示类时，必须和*联合使用，表示入参时候，单独使用。
+- +：表示按类型匹配指定类的所有类（继承或扩展指定类，亦包括类本身），必须跟在类名后面。
+- execution()和within()支持所有通配符
+- 仅支持+同配置：args()，this()，target()，但意义不大
+- 注解类型不支持通配符。
+
+**关于逻辑运算符：**
+
+- &&：与操作符
+- ||：或操作符
+- ！：非操作符
+
+> AspectJ不支持and，or和not操作符，但是Spring在xml配置文件中定义切点表达式定义添加的等价操作符。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
