@@ -1,10 +1,10 @@
-# 极1S刷LEDE
+# 极1S刷LEDE和Padavan
 
 ------
 
 Author: Reborn
 
-Update-Date: 2018-03-10
+Update-Date: 2018-07-10
 
 -----
 
@@ -16,7 +16,9 @@ Update-Date: 2018-03-10
 
 最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是很不稳定，有时候会自动下线，于是就决定把它刷成LEDE，而且可玩性更高，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大。在这里推荐要给路由器刷机的人，买HC5661，固件更多。本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神[ptpt52](http://www.right.com.cn/forum/space-uid-372524.html)给这台HC5661A编译了一个他自己定制的[LEDE固件](http://www.right.com.cn/forum/forum.php?mod=viewthread&tid=212965&extra=page%3D1&page=1)，还挺好用的，推荐小白使用。
 
-【更新】部分指令修改，增加padavan固件
+【2018-03-10更新】部分指令修改，增加padavan固件
+
+【2018-07-10更新】流程更新，ipv6不可用
 
 ## 刷机
 
@@ -38,11 +40,12 @@ ssh root@极路由管理ip地址 -p 1022
 scp -P 1022 /path/breed-mt7628-hiwifi-hc5661a.bin root@极路由管理ip地址:/tmp
 ```
 
-- 紧接着，在打开的路由器终端上操作，按照hackpascal大神所说mtd指令最好不要加上-r，但是不知道为什么网上很多教程都是加上了-r？？？
+- 紧接着，在打开的路由器终端上操作，按照hackpascal大神所说mtd指令最好不要加上-r，理由breed介绍页面有讲，但是不知道为什么网上很多教程都是加上了-r？？？
 
 ```shell
+#以下不加-r，是hackpascal大神推荐
 mtd write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
-"以下这个加-r不推荐，尽量使用上面的"
+#以下加-r，我自己使用成功
 mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
 ```
 
@@ -53,13 +56,15 @@ mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
 
 ### 刷Padavan固件（集成scutclient）
 
-不知道是学校网络不稳定，还是固件文件，决定给路由器刷padavan，听说这个固件工作非常稳定，另外我想自己尝试编译一个路由器固件，历经两天，这个很感谢[libgcc](https://www.jianshu.com/u/70c0d31e3717)的耐心解答，终于成功编译出padavan（集成scutclient）For HC5661A的固件。刷机如下的LEDE刷机，刷完之后的配置，请参考libgcc的[简书文件](https://www.jianshu.com/p/cb51fb0fb2ac)。（连续两天都没掉线，或者出现wifi突然没了的情况，确实挺稳定的）
+不知道是学校网络不稳定，还是固件文件，决定给路由器刷padavan，听说这个固件工作非常稳定，另外我想自己尝试编译一个路由器固件，历经两天，这个很感谢[libgcc](https://www.jianshu.com/u/70c0d31e3717)的耐心解答，终于成功编译出padavan（集成scutclient）For HC5661A的固件。刷机如下的LEDE刷机，刷完之后的配置，请参考libgcc的[简书文章](https://www.jianshu.com/p/cb51fb0fb2ac)。（连续两天都没掉线，或者出现wifi突然没了的情况，确实挺稳定的）
 
 
 
 分享我编译出的极1S（HC5661A）的padavan固件：链接: https://pan.baidu.com/s/10F9b6szkhENga6gj8ZUZ5A 密码: pq7y
 
 
+
+刷Padavan固件流程与刷LEDE固件一致，首先备份所有东西，然后选择固件更新刷入固件即可，最后校园登陆配置看看[这篇文章](https://www.jianshu.com/p/cb51fb0fb2ac)(按2017-10-12以后的固件操作)即可。
 
 **固件后台登录的默认域名：my.router；默认ip：192.168.2.1登录用户名/密码 = admin/admin**
 
@@ -109,6 +114,10 @@ opkg install /tmp/scutclient_2.2-20170325-1_mipsel_24kc.ipk
 ### ipv6设置
 
 留坑，暂未设置成功，成功再回来补坑。
+
+
+
+*最新：北校宿舍的ipv6似乎不可用，虽然有ipv6地址，原因未知*
 
 
 
