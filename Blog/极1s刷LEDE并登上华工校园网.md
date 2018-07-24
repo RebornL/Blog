@@ -127,4 +127,8 @@ opkg install /tmp/scutclient_2.2-20170325-1_mipsel_24kc.ipk
 
 
 
+## 问题及解决
+
+【18-07-23】帮同学刷Padavan固件，遇到了WiFi无法连接问题，试过重刷EERom没用，最后通过breed修改RF1的WLAN MAC为路由器的mac地址即可，具体操作见[这篇文章](https://blog.csdn.net/pxmxx/article/details/79427868)
+
 > ~~另外文中的图，日后再补！！！~~
