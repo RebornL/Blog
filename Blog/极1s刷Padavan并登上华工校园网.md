@@ -12,9 +12,17 @@ Update-Date: 2018-07-10
 
 [TOC]
 
+## 固件更新
+
+【2018-09-20】：padavan固件更新scutclient程序到3.1.2版本，链接: https://pan.baidu.com/s/161qxwFYjSbg9Tk2bXVlF4A 提取码: dmdh
+
+【2018-08-16】：跟随libgcc更新padavan。
+
+【2018-04】：初始版本，~~链接: https://pan.baidu.com/s/10F9b6szkhENga6gj8ZUZ5A 密码: pq7y~~
+
 ## 前言
 
-最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是很不稳定，有时候会自动下线，于是就决定把它刷成LEDE，而且可玩性更高，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大。在这里推荐要给路由器刷机的人，买HC5661，固件更多。本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神[ptpt52](http://www.right.com.cn/forum/space-uid-372524.html)给这台HC5661A编译了一个他自己定制的[LEDE固件](http://www.right.com.cn/forum/forum.php?mod=viewthread&tid=212965&extra=page%3D1&page=1)，还挺好用的，推荐小白使用。
+最近宿舍用的路由器----极路由1S（新版的，HC5661A），用路由器群提供的hiwifi的旧版wifi破解教程，虽然能用，但是很不稳定，有时候会自动下线，于是就决定把它刷成LEDE，而且可玩性更高，便于使用群里最新提供的scutclient来破解wifi。但是没想到这个HC5661A型号能用最新固件很少，跟HC5661的区别很大。在这里推荐要给路由器刷机的人，买HC5661，固件更多。~~本来还打算按照LEDE官网提供的教程自己编译一个HC5661A的LEDE最新固件，想到有民间大神[ptpt52](http://www.right.com.cn/forum/space-uid-372524.html)给这台HC5661A编译了一个他自己定制的[LEDE固件](http://www.right.com.cn/forum/forum.php?mod=viewthread&tid=212965&extra=page%3D1&page=1)，还挺好用的，推荐小白使用~~。推荐小白直接用集成scutclient的**padavan固件**，简单但功能同样强大。
 
 【2018-03-10更新】部分指令修改，增加padavan固件
 
@@ -62,11 +70,11 @@ mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
 
 ### 刷Padavan固件（集成scutclient）
 
-不知道是学校网络不稳定，还是固件文件，决定给路由器刷padavan，听说这个固件工作非常稳定，另外我想自己尝试编译一个路由器固件，历经两天，这个很感谢[libgcc](https://www.jianshu.com/u/70c0d31e3717)的耐心解答，终于成功编译出padavan（集成scutclient）For HC5661A的固件。刷机如下的LEDE刷机，刷完之后的配置，请参考libgcc的[简书文章](https://www.jianshu.com/p/cb51fb0fb2ac)。（连续两天都没掉线，或者出现wifi突然没了的情况，确实挺稳定的）
+不知道是学校网络不稳定，还是固件文件，决定给路由器刷padavan，听说这个固件工作非常稳定，另外我想自己尝试编译一个路由器固件，历经两天，这个很感谢[libgcc](https://www.jianshu.com/u/70c0d31e3717)的耐心解答，终于成功编译出padavan（集成scutclient）For HC5661A的固件。刷机流程如下的LEDE刷机，刷完之后的配置，请参考libgcc的[简书文章](https://www.jianshu.com/p/cb51fb0fb2ac)。（连续两天都没掉线，或者出现wifi突然没了的情况，确实挺稳定的）
 
 
 
-分享我编译出的极1S（HC5661A）的padavan固件：链接: https://pan.baidu.com/s/10F9b6szkhENga6gj8ZUZ5A 密码: pq7y
+分享我编译出的极1S（HC5661A）的padavan固件：见上面**固件更新**一栏 。
 
 
 
