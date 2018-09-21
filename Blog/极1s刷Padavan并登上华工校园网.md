@@ -14,9 +14,9 @@ Update-Date: 2018-07-10
 
 ## 固件更新
 
-【2018-09-20】：padavan固件更新scutclient程序到3.1.2版本，链接: https://pan.baidu.com/s/161qxwFYjSbg9Tk2bXVlF4A 提取码: dmdh
+~~【2018-09-20】：padavan固件更新scutclient程序到3.1.2版本，链接: https://pan.baidu.com/s/161qxwFYjSbg9Tk2bXVlF4A~~，该版本不可用 
 
-【2018-08-16】：跟随libgcc更新padavan。
+【2018-09-01】：跟随libgcc的07-16更新集成scutclient的padavan。链接: https://pan.baidu.com/s/1BOs_TYL6ywmcbJBxjFSteg 提取码: dru6
 
 【2018-04】：初始版本，~~链接: https://pan.baidu.com/s/10F9b6szkhENga6gj8ZUZ5A 密码: pq7y~~
 
@@ -80,7 +80,7 @@ mtd -r write /tmp/breed-mt7628-hiwifi-hc5661a.bin u-boot
 
 刷Padavan固件流程与刷LEDE固件一致，首先备份所有东西，然后选择固件更新刷入固件即可，最后校园登陆配置看看[这篇文章](https://www.jianshu.com/p/cb51fb0fb2ac)(按2017-10-12以后的固件操作)即可。
 
-**固件后台登录的默认域名：my.router；默认ip：192.168.2.1登录用户名/密码 = admin/admin**
+**固件后台登录的默认域名：my.router；默认ip：192.168.2.1登录用户名/密码 = admin/admin；WiFi：Padavan，密码1234567890**
 
 
 
