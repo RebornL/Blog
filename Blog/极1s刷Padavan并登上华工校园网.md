@@ -14,6 +14,15 @@ Update-Date: 2018-07-10
 
 ## 固件更新
 
+【2018-09-25】：跟随libgcc源码更新，其中scutclient升级到3.1.2版本，并启用新的watchcat，建议升级后执行**双清操作**或**手动删除**crontab中的两项：
+
+```shell
+*/1 * * * * /bin/scutclient_watchcat.sh > /dev/null 2>&1
+*/10 * * * * /usr/bin/ss-watchcat.sh > /dev/null 2>&1
+```
+
+另外，该版本我取消掉ss，因为我没用过。链接: https://pan.baidu.com/s/1tqsEYKqZOcWHSPT-ZFEVGw 提取码: 9ig2。其他升级详情请看[这里](https://www.jianshu.com/p/52282cd07284)
+
 ~~【2018-09-20】：padavan固件更新scutclient程序到3.1.2版本，链接: https://pan.baidu.com/s/161qxwFYjSbg9Tk2bXVlF4A~~，该版本不可用 
 
 【2018-09-01】：跟随libgcc的07-16更新集成scutclient的padavan。链接: https://pan.baidu.com/s/1BOs_TYL6ywmcbJBxjFSteg 提取码: dru6
