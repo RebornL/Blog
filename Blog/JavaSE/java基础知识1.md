@@ -1,7 +1,25 @@
 # java基础知识1
 
 ## java新的基础知识
+### Java基本类型
+
+Java基本类型有如下类型，及其作为类成员的初始值
+
+| 基本类型 | 类成员的初始值 |
+| -------- | -------------- |
+| boolean  | false          |
+| char     | '\u0000'(null) |
+| byte     | (byte)0        |
+| short    | (short)0       |
+| int      | 0              |
+| long     | 0L             |
+| float    | 0.0f           |
+| double   | 0.0d           |
+
+**需要注意，当变量是定义在函数中作为局部变量存在时，它会被随机初始化**
+
 ### for each语句
+
 ```java
 char[] s = {'a', 'b', 'c'};
 for(char ele: s) {
@@ -127,5 +145,81 @@ class LRUCache<K, V> extends LinkedHashMap<K, V> {
         super(MAX_ENTRIES, 0.75f, true);
     }
 }
+```
+
+
+
+## 关键字
+
+### transient
+
+关于对象序列化时，直接对类实现**Serializable接口**即可。而对于敏感信息（密码等等）或无用信息，可以对类中定义的属性加上transient关键字，序列化时，该属性就不会序列化到文件。而对于**Externalizable接口**，则需要通过writeExternal方法指定序列化的变量，而与transient修饰无关。
+
+transient特点：
+
+- transient关键字之修饰类中变量，不能修饰类和方法，此外类必须实现Serializable接口。
+- transient修改的变量不能被序列化，但是**静态变量不管是否被transient修饰均不能被序列化**。
+
+```java
+public class TransientTest {
+    
+    public static void main(String[] args) {
+        
+        User user = new User();
+        user.setUsername("Alexia");
+        user.setPasswd("123456");
+        
+        System.out.println("read before Serializable: ");
+        System.out.println("username: " + user.getUsername());
+        System.err.println("password: " + user.getPasswd());
+        
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(
+                    new FileOutputStream("C:/user.txt"));
+            os.writeObject(user); // 将User对象写进文件
+            os.flush();
+            os.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+                    "C:/user.txt"));
+            user = (User) is.readObject(); // 从流中读取User的数据
+            is.close();
+            
+            System.out.println("\nread after Serializable: ");
+            System.out.println("username: " + user.getUsername());
+            System.err.println("password: " + user.getPasswd());
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class User implements Serializable {
+    private static final long serialVersionUID = 8294180014912103005L;  
+    
+    private String username;
+    private transient String passwd;
+    
+}
+```
+
+```
+read before Serializable: 
+username: Alexia
+password: 123456
+
+read after Serializable: 
+username: jmwang
+password: null
 ```
 
