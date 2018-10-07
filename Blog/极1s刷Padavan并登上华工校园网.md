@@ -14,6 +14,10 @@ Update-Date: 2018-07-10
 
 ## 固件更新
 
+【2018-10-03】：跟随libgcc源码更新，各种软件也都更新，同时恢复ss（可能会有人需要），具体升级详情请看[这里](https://www.jianshu.com/p/52282cd07284)
+
+链接: https://pan.baidu.com/s/1wfB9ZunwHV9OXaXbYKM-Cg 提取码: t56q
+
 【2018-09-25】：跟随libgcc源码更新，其中scutclient升级到3.1.2版本，并启用新的watchcat，建议升级后执行**双清操作**或**手动删除**crontab中的两项：
 
 ```shell
