@@ -1,5 +1,7 @@
 ### 类加载过程
 
+![双亲委托机制](E:\Files\Blog\Blog\JavaSE\jvm3.jpg)
+
 > 加载（Loading）==》验证（Vertification）==》准备（Preparation）==》解析（Resolution）++》初始化（Initialization）==》使用（Using）==》卸载（Unloading）
 
 - 加载过程：虚拟机会做以下事情：1.通过一个类的全限定名来获取其定义的二进制字节流；2.将字节流中代表的静态存储节后转化位方法区的运行时数据结构；3.在堆中该类的Class对象，作为方法去的数据的访问入口。
@@ -39,7 +41,9 @@
 
   - Java虚拟机启动时被标明为启动类的类（`Java Test`），直接使用`java.exe`命令来运行某个主类
 
-    **结束生命周期**
+
+
+    ### 结束生命周期
 
     在如下几种情况下，Java虚拟机将结束生命周期
 
