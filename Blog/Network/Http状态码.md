@@ -129,7 +129,45 @@ Content-Length: 122
 
 [HTTP面试题](https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&mid=2247483733&idx=1&sn=f9ab8d07d2151bd40cdcd9a290317346&chksm=ebd74054dca0c942a36e6e63c783e9b1f414a16e2c702ae4b371a204960a50c7ae89af207139#rd)
 
+【2018-10-31】
 
+**HTTP内容补充增加**
+
+###Cookie
+
+HTTP协议是无状态的，因此在HTTP1.1中引入Cookie来保存状态信息。（随着现在浏览器的发展，Cookie不在浏览器客户端唯一存储客户端的存储，新的浏览器API中允许开发者将数据存储在本地中，使用Web storage API或者IndexedDB）。Cookie具有作用域的范围，默认情况下当前的主机访问（不包含子域名），可以通过修改Domain字段来指定哪些主机可以接受Cookie，另外也可以通过Path字段来指定哪些路径可以接受Cookie。**Cookie只允许储存ASCII 码字符串信息**。
+
+
+
+### Session
+
+HTTP交互中除了可以使用Cookie保存状态信息，也可以使用Session来保存状态信息。Cookie保存在客户端中，Session保存在服务器中，安全性相对更高。另外Session可以储存对象，而不仅仅只有字符串信息。Session还可以将其持久化，存储到数据库中。
+
+
+
+Session维护状态：
+
+1. 客户端中不禁用Cookie时，服务器端为客户端生成SessionID值，当用户正确验证后，服务器端会将SessionID值通过响应报文Set-Cookie字段，存储到浏览器的Cookie中。当客户端继续操作，就会将这个Cookie发给服务器。
+
+2. 当客户端浏览器禁用Cookie时，此时便无法将SessionID中存储到Cookie中，此时便采用URL重写技术，将SessionID作为URL的参数进行传递。
+
+
+
+### 缓存
+
+首部字段有Etag字段，该字段的含义是资源的唯一标识，每次更新都会跟服务器端比较这个值是否相同，请求资源已经修改，会返回资源和状态码200 OK；请求资源未修改会返回304 Not Modified。
+
+
+
+### HTTP/2.0
+
+HTTP/2.0与HTTP/1.x的区别在于将原来报文分成两个帧分别是HEADERS帧和DATA帧，均为二进制格式。整个通信过程只有一个TCP连接存在，承载任意数量的双向数据流。
+
+![](./http2.png)
+
+
+
+HTTP/2.0中服务器会将客户端所需要的资源一起发送给客户端，不需要客户端重复发送多个请求。HTTP/2.0还会维护和更新首部字段表，避免重复传输，同时还对首部字段进行Huffman编码。
 
 
 
