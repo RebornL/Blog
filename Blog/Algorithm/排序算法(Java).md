@@ -96,52 +96,52 @@ public class Shell {
 
 ```java
 public static void mergeSort(int[] arr, int left, int right) {
-        sort(arr, left, right);
-    }
+    sort(arr, left, right);
+}
 
-    public static void sort(int[] arr, int left, int right) {
-        if(left>=right) return;
-        
-        int mid = (left+right)/2;
-        sort(arr, left, mid);
-        sort(arr, mid+1, right);
-        merge(arr, left, right);
-       
+public static void sort(int[] arr, int left, int right) {
+    if(left>=right) return;
+
+    int mid = (left+right)/2;
+    sort(arr, left, mid);
+    sort(arr, mid+1, right);
+    merge(arr, left, right);
+
+}
+
+public static void merge(int[] arr, int left, int right) {
+    int[] result = new int[arr.length];
+    int mid = (left+right)/2;
+    int leftIndex = left, rightIndex = mid+1, i = left;
+    System.out.println("left:"+left+", right: "+right);
+    for(int j = 0; j <= right; j++) {
+        System.out.printf("%d\t", arr[j]);
     }
-    
-    public static void merge(int[] arr, int left, int right) {
-        int[] result = new int[arr.length];
-        int mid = (left+right)/2;
-        int leftIndex = left, rightIndex = mid+1, i = left;
-        System.out.println("left:"+left+", right: "+right);
-        for(int j = 0; j <= right; j++) {
-            System.out.printf("%d\t", arr[j]);
-        }
-        System.out.printf("\n");
-        while(leftIndex <= mid && rightIndex <= right) {
-            if(arr[leftIndex]<arr[rightIndex]) {
-                result[i++] = arr[leftIndex++];
-            } else {
-                result[i++] = arr[rightIndex++];
-            }
-        }
-        
-        while(leftIndex <= mid) {
+    System.out.printf("\n");
+    while(leftIndex <= mid && rightIndex <= right) {
+        if(arr[leftIndex] < arr[rightIndex]) {
             result[i++] = arr[leftIndex++];
-        }
-        
-        while(rightIndex <= right) {
+        } else {
             result[i++] = arr[rightIndex++];
         }
-        //对arr进行重新复制
-        for(int j = left; j <= right; j++) {
-            arr[j] = result[j];
-        }
-        for(int j = 0; j <= right; j++) {
-            System.out.printf("%d\t", arr[j]);
-        }
-        System.out.printf("\n");
     }
+
+    while(leftIndex <= mid) {
+        result[i++] = arr[leftIndex++];
+    }
+
+    while(rightIndex <= right) {
+        result[i++] = arr[rightIndex++];
+    }
+    //对arr进行重新复制
+    for(int j = left; j <= right; j++) {
+        arr[j] = result[j];
+    }
+    for(int j = 0; j <= right; j++) {
+        System.out.printf("%d\t", arr[j]);
+    }
+    System.out.printf("\n");
+}
 ```
 
 ```
@@ -206,8 +206,8 @@ public static void quickSort(int[] arr, int left, int right) {
         //     System.out.printf("%d\t", arr[k]);
         // }
         // System.out.printf("\n");
-        int pivot = arr[right];
-        int i = left-1;
+        int pivot = arr[right];//每次以最后一个元素作为基准元素
+        int i = left-1;//分割的下标
         for(int j = left; j < right; j++) {
             if(arr[j]<pivot) {
                 swap(arr, ++i, j);
