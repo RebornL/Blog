@@ -123,3 +123,55 @@ Java中引入Java虚拟机的概念（JVM），即在机器和编译程序之间
 
 
 
+## 8.ArrayList和LinkedList异同
+
+1. ArrayList和LinkedList都是不同步的，需要线程安全的，可以采用Java的并发集合包
+2. 底层数据结构不同，ArrayList使用的是Object数组，而LinkedList采用的是双向链表结构
+3. ArrayList的底层采用数组实现，所以插入和删除元素受元素位置的影响；而LinkedList底层采用链表实现，因此插入和删除操作不受元素位置的影响，时间复杂度近似为O(1)
+4. ArrayList支持快速随机访问，即通过下标快速获取元素。
+5. ArrayList主要空间浪费在于预留一定容量空间；而LinkedList的空间浪费则在于它每个结点的结构。
+
+
+
+## 9.HashMap的底层实现
+
+### JDK1.8以前
+
+在JDK1.7及之前JDK版本中，HashMap的底层采用数组和链表的实现的**链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的时数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
+
+![](./hashmap1.7.png)
+
+**jdk1.7的hash方法**
+
+```
+static int hash(int h) {
+    // This function ensures that hashCodes that differ only by
+    // constant multiples at each bit position have a bounded
+    // number of collisions (approximately 8 at default load factor).
+
+    h ^= (h >>> 20) ^ (h >>> 12);
+    return h ^ (h >>> 7) ^ (h >>> 4);
+}
+```
+
+### JDK1.8
+
+JDK1.8对hash方法进行简化，性能更好。此外还增加红黑树，即当链表的长度大于8（默认值），将会把链表转换成红黑树，保证了HashMap的检索速度。
+
+```
+static final int hash(Object key) {
+      int h;
+      // key.hashCode()：返回散列值也就是hashcode
+      // ^ ：按位异或
+      // >>>:无符号右移，忽略符号位，空位都以0补齐
+      return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+  }
+```
+
+![](./hashmap1.8.png)
+
+### 拓展
+
+为什么HashMap的长度要为2的幂次方？
+
+这样做是为了让HashMap获取高效，尽量较少碰撞，把数据分配均匀。另外，这里有个数学的技巧，**取余(%)操作中如果除数是2的幂次则等价于与其除数减一的与(&)操作（也就是说 hash%length==hash&(length-1)的前提是 length 是2的 n 次方；）。** 并且 **采用二进制位操作 &，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。**
