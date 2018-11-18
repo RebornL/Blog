@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Java基础知识1
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
 # java基础知识1
 
 ## java新的基础知识

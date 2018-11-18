@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Linux下I/O模型介绍
+subtitle:   五种模型介绍
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Linux
+---
+
 # I/O模型
 
 Linux下五种I/O模型：
@@ -75,6 +87,6 @@ int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout
 
 进程进行aio_read系统调用会立即返回，继续执行接下来的操作。内核会在所有I/O操作完成后给进程发送信号。对比信号驱动I/O，区别在内核发送信号的时机。
 
-![](./IO.png)
+![](../img/IO.png)
 
-![](./IO-Chinese.png)
+![](../img/IO-Chinese.png)

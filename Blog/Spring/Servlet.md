@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Servlet学习记录
+subtitle:   
+date:       2018-10-31
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java Web
+---
+
 ### Servlet
 
 servlet是用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。因此servlet最大作用便是处理浏览器带来的HTTP请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互。

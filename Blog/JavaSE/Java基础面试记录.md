@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Java基础面试题记录
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
 ## 1. 为什么Java只有值传递？
 
 Java没有指针这种说法，而且即使传递对象也并非所谓按引用传递，而是把栈中指向堆中某个地址值传递给参数，也依旧是值传递。对于基本数据类则和其他语言一样。
@@ -32,7 +44,7 @@ s2:小李
 */
 ```
 
-![](./zhichuandi.png)
+![](../img/zhichuandi.png)
 
 
 
@@ -139,7 +151,7 @@ Java中引入Java虚拟机的概念（JVM），即在机器和编译程序之间
 
 在JDK1.7及之前JDK版本中，HashMap的底层采用数组和链表的实现的**链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的时数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
 
-![](./hashmap1.7.png)
+![](../img/hashmap1.7.png)
 
 **jdk1.7的hash方法**
 
@@ -168,7 +180,7 @@ static final int hash(Object key) {
   }
 ```
 
-![](./hashmap1.8.png)
+![](../img/hashmap1.8.png)
 
 ### 拓展
 

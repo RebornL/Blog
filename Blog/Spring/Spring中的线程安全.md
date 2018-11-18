@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Spring中线程安全
+subtitle:   
+date:       2018-10-31
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Spring
+    - Java Web
+---
+
 ## Spring中线程安全
 
 - 保证bean是无状态对象，如Service、DAO和Controller这些都是无状态的对象，只是执行某些操作。bean的生命周期：

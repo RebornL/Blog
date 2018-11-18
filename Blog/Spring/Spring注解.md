@@ -1,3 +1,17 @@
+---
+layout:     post
+title:      Spring中配置方式
+subtitle:   注解、xml配置方式
+date:       2018-10-31
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Spring
+    - Java Web
+---
+
+## Spring中常见注解
 @Component:标注一个普通的Spring Bean类
 
 @Respository：标注一个DAO的组件类
@@ -20,7 +34,7 @@
 
 AOP将横切关注点从他们所影响的对象中分离出来，DI则将应用程序彼此分离出来。
 
-![spring4.0](./Spring4.0/springkuangjia.png)
+![spring4.0](../img/springkuangjia.png)
 
 Spring Hello World实例：
 
@@ -52,7 +66,7 @@ Bean：
 
 配置元数据对应bean定义的属性：
 
-![bean](./Spring4.0/bean-property.png)
+![bean](.../img/bean-property.png)
 
 ## Spring配置元数据：
 
@@ -96,7 +110,7 @@ Bean：
 
 Bean的scope属性：
 
-![scope](./Spring4.0/scope-property.png)
+![scope](../img/scope-property.png)
 
 ```xml
 <bean id="helloWorld" scope="singleton">
@@ -320,7 +334,7 @@ public class Foo {
 
 
 
-以上的xml配置，均为显示注入依赖，Beans还可以通过指定bean的autowire属性为一个bean定义一个自动装配的模式：![beans模式](./Spring4.0/bean-way.png)
+以上的xml配置，均为显示注入依赖，Beans还可以通过指定bean的autowire属性为一个bean定义一个自动装配的模式：![beans模式](../img/bean-way.png)
 
 
 

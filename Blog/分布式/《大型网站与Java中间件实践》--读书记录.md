@@ -1,20 +1,32 @@
+---
+layout:     post
+title:      《大型网站系统与Java中间件实践》--读书记录
+subtitle:   
+date:       2018-10-31
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java Web
+---
+
 ### 应用集群时，Session解决方法
 
 - Session Sticky：让负载均衡器根据会话标识选择对应的服务器，原来的其他设备方案基本不用变动，但缺点是负载均衡器就会变成有状态的节点，内存消耗会更大，容灾更麻烦。
 
-  ![](./sessionsticky.png)
+  ![](../img/sessionsticky.png)
 
 - Session Replication：不同服务器之间进行Session数据同步，这样负载均衡器不需要改变，无论是哪个服务器相应都有着相同的Session。问题则是同步Session数据造成网络带宽的开销，以及随着服务器的增多Session数据也会急剧增多。
 
-  ![](./sessionreplication.png)
+  ![](../img/sessionreplication.png)
 
 - Session数据集中存储：所有Session都集中存储到同一个地方，不同服务器之间不需要进行Session数据同步，都从同一个地方获取Session数据。问题也很明显，若存储Session的机器出了问题，那会影响整个应用；另外读写Session会引入网络操作，可能会存在时延。
 
-  ![](./sessionfocus.png)
+  ![](../img/sessionfocus.png)
 
 - Cookie Based：将Session存储在Cookies中，这样就没有外部系统获取和读写Session数据的网络时间和不稳定性。但这个存在几个严重问题：Cookie长度限制，安全性问题，带宽消耗，以及性能影响（每次HTTP请求和相应的头部数据增多）。
 
-  ![](./Cookiebase.png)
+  ![](../img/Cookiebase.png)
 
 ### 关于读写分离
 
@@ -22,7 +34,7 @@
 
 > 这里记录一下，搜索引擎，其实有点像读库，所不同的，搜索引擎是构建索引，构建索引不仅仅是简单的数据复制。
 
-![](./readAndWrite.png)
+![](../img/readAndWrite.png)
 
 
 
@@ -32,7 +44,7 @@
 
 把数据库中不同业务数据拆分到不同的数据库中，可以根据不同业务特点进行优化。增加了多个数据源的配置，但是带来的麻烦是多个数据连接池的隔离。解决方案有：1. 使用分布式事务，但其性能明显低于单机事务；2. 去掉事务或不去追求事务支持，改为表关联查询即可。
 
-![](./vertical.png)
+![](../img/vertical.png)
 
 
 
@@ -52,7 +64,7 @@
 
 - 此外还可继续根据功能继续拆分，例如用户注册、用户登录、用户信息维护变成三个系统
 
-  ![](./splitApplication.png)
+  ![](../img/splitApplication.png)
 
 #### 服务化
 
@@ -62,7 +74,7 @@
 
 #### 消息中间件
 
-![](./messagemiddlebin.png)
+![](../img/messagemiddlebin.png)
 
 应用A和应用B通过消息中间件进行信息通信，好处是实现异步和解耦操作。
 

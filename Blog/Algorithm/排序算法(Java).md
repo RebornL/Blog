@@ -1,12 +1,25 @@
+---
+layout:     post
+title:      排序算法(Java版)
+subtitle:   排序算法(Java版)
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Alg
+    - Java
+---
+
 ## 排序算法(Java版)
 
-![algorithm](./algorithm.png)
+![algorithm](../img/algorithm.png)
 
 > 备注：以下动图来自于**一像素**的[排序算法](https://www.cnblogs.com/onepixel/p/7674659.html)
 
 ### 冒泡排序
 
-![](./maopao.gif)
+![](../img/maopao.gif)
 
 ```java
 public static void bubbleSort(int[] arr) {
@@ -23,7 +36,7 @@ public static void bubbleSort(int[] arr) {
 
 ### 选择排序
 
-![](./select.gif)
+![](../img/select.gif)
 
 ```java
 public static void selectSort(int[] arr) {
@@ -43,7 +56,7 @@ public static void selectSort(int[] arr) {
 
 ### 插入排序
 
-![](./insert.gif)
+![](../img/insert.gif)
 
 ```java
 public static void insertSort(int[] arr) {
@@ -65,7 +78,7 @@ public static void insertSort(int[] arr) {
 
 ### 希尔排序
 
-![](./shell.gif)
+![](../img/shell.gif)
 
 
 
@@ -92,7 +105,7 @@ public class Shell {
 
 ### 归并排序
 
-![](./merge.gif)
+![](../img/merge.gif)
 
 ```java
 public static void mergeSort(int[] arr, int left, int right) {
@@ -187,7 +200,7 @@ left:0, right: 12
 
 ### 快速排序
 
-![](./quick.gif)
+![](../img/quick.gif)
 
 ```java
 public static void quickSort(int[] arr, int left, int right) {

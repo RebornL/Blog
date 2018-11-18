@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Spring中AOP记录
+subtitle:   
+date:       2018-09-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Spring
+    - Java Web
+---
+
 ## Spring的AOP
 
 AOP：面向切面编程，具体是指在不同功能类中出现的相同的功能点，将这些功能点横向切割出来，与业务逻辑类分开。
@@ -155,7 +168,7 @@ CGLib采用动态创建子类的方式生成代理对象，所以不能对目标
 
 另外对比，在我机子上，JDK代理运行速度比CGLib代理要稍快一些。因此CGLib动态代理技术适用于无需频繁创建代理对象，JDK代理则适用于频繁创建代理对象。
 
-![1524553804338](E:\Files\Blog\Blog\Spring4.0\jdkAndCGlib.png)
+![1524553804338](../img/jdkAndCGlib.png)
 
 
 
@@ -220,7 +233,7 @@ AspectJ在Spring中的使用，同样是采用xml配置文件，在Bean的xml中
 
 #### AspectJ语法
 
-![1524642633627](E:\Files\Blog\Blog\Spring4.0\aspectj-program.png)
+![1524642633627](../img/aspectj-program.png)
 
 以上表中所展示的@Aspect函数可以在Spring中，其他未在表上展示的@Aspect函数一般都不能在Spring上使用，否则会报IllegalArgumentException异常。
 

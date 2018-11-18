@@ -1,4 +1,16 @@
-# Java基础知识记录
+---
+layout:     post
+title:      Java基础知识0
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
+# Java基础知识0
 ## 基础篇
 1） 面向对象的特性有哪些？
 
@@ -56,7 +68,7 @@ Map和Collection接口是所有集合框架的父接口：
 3）HashMap的底层实现？
 
 （回去要补一下源码阅读）Java8以前采用数组+链表实现，Java8之后采用数组+链表+红黑树实现。
-![](./simpleshow.png)
+![](../img/simpleshow.png)
 
 4）ConcurrentHashMap和Hashtable的区别？
 

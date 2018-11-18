@@ -1,8 +1,20 @@
+---
+layout:     post
+title:      MySQL入门
+subtitle:   
+date:       2018-03-03
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - MySQL
+---
+
 # MySQL入门笔记
 
 ---------------------------------------------------------------
 
-**Date: 2018-02-26 **
+**Date: 2018-02-26**
 
 **Author: Reborn**
 
@@ -30,7 +42,7 @@
 SELECT prod_name FROM prod_table;
 ```
 
-输出结果：![select1](select1.png)
+输出结果：![select1](../img/select1.png)
 
 选取多列：
 
@@ -38,7 +50,7 @@ SELECT prod_name FROM prod_table;
 SELECT prod_id, prod_name, prod_price FROM prod_table;
 ```
 
-输出结果：![select2](select2.png)
+输出结果：![select2](../img/select2.png)
 
 选取所有列：
 
@@ -59,14 +71,14 @@ SELECT DISTINCT vent_id FROM prod_table;
 ```
 
 
-输出结果：![distinct1](distinct1.png)
+输出结果：![distinct1](../img/distinct1.png)
 
 ### LIMIT关键字
 LIMIT关键字用来限制返回的条目数
 ```mysql
 SELECT prod_name FROM prod_table LIMIT 5;
 ```
-输出结果：![limit1](./limit1.png)
+输出结果：![limit1](../img/limit1.png)
 
 ### ORDER BY子句
 ORDER BY子句默认升序排列，加上DESE关键词变成绛序排列。
@@ -74,7 +86,7 @@ ORDER BY子句默认升序排列，加上DESE关键词变成绛序排列。
 SELECT prod_id, prod_price FROM prod_table ORDER BY prod_price;
 SELECT prod_id, prod_price FROM prod_table ORDER BY prod_price DESC;
 ```
-输出结果：![order1](./order1.png), ![order2](./order2.png)
+输出结果：![order1](../img/order1.png), ![order2](../img/order2.png)
 
 ## 过滤数据
 
@@ -86,13 +98,13 @@ where关键字，进行条件筛选，操作符有大于>，小于<，不等于<
 SELECT prod_name, prod_price FROM prod_table WHERE prod_price = 2.5;
 ```
 
-输出结果：![](./where1.png)
+输出结果：![](../img/where1.png)
 
 ```mysql
 SELECT prod_name, prod_price FROM prod_table WHERE prod_name = 'fuses';
 ```
 
-输出结果：![](./where2.png)
+输出结果：![](../img/where2.png)
 
 > 数据库对大小写不敏感！
 
@@ -106,7 +118,7 @@ SELECT prod_name, prod_price FROM prod_table WHERE prod_name = 'fuses';
 SELECT prod_name, prod_price FROM prod_table WHERE prod_price BETWEEN 5 AND 10;
 ```
 
-输出结果：![](./between1.png)
+输出结果：![](../img/between1.png)
 
 #### IN操作符
 
@@ -116,7 +128,7 @@ in操作符获取满足区间内的值的所有行
 SELECT prod_name, prod_price FROM prod_table WHERE vend_id IN (1002, 1003, 1004);
 ```
 
-取值写在括号，用‘,’分开，输出结果(获取生产产商为1002，1003，1004的所有商品)：![](./in1.png)
+取值写在括号，用‘,’分开，输出结果(获取生产产商为1002，1003，1004的所有商品)：![](../img/in1.png)
 
 ### 条件检测
 
@@ -128,7 +140,7 @@ SELECT prod_name, prod_price FROM prod_table WHERE vend_id IN (1002, 1003, 1004)
 SELECT prod_id, prod_price, prod_name FROM prod_table WHERE vend_id=1003 AND prod_price <= 10;
 ```
 
-输出结果：![](./and1.png)
+输出结果：![](../img/and1.png)
 
 
 
@@ -140,7 +152,7 @@ SELECT prod_id, prod_price, prod_name FROM prod_table WHERE vend_id=1003 AND pro
 SELECT prod_name, prod_price FROM prod_table WHERE vend_id=1002 OR vend_id=1003;
 ```
 
-输出结果：![](./or1.png)
+输出结果：![](../img/or1.png)
 
 > **AND操作符的优先级比OR操作符优先级高，必要的时候，使用括号()**
 
@@ -152,7 +164,7 @@ SELECT prod_name, prod_price FROM prod_table WHERE vend_id=1002 OR vend_id=1003;
 SELECT prod_name, prod_price FROM prod_table WHERE vend_id NOT IN(1002, 1003);
 ```
 
-选取厂商id不为1002，1003的所有商品，输出结果：![](./not1.png)
+选取厂商id不为1002，1003的所有商品，输出结果：![](../img/not1.png)
 
 
 
@@ -164,7 +176,7 @@ NULL值，即为**无值（no value）**，与字段为0，空字符串，和空
 SELECT cust_id FROM prod_table WHERE cust_email IS NULL;
 ```
 
-输出email值为null的厂商：![](./null1.png)
+输出email值为null的厂商：![](../img/null1.png)
 
 
 
@@ -178,13 +190,13 @@ like操作符结合**通配符**可以实现简单模糊检索，通配符有%�
 SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '_ ton anvil';
 ```
 
-输出结果：![](./like1.png)
+输出结果：![](../img/like1.png)
 
 ```mysql
 SELECT prod_id, prod_name FROM prod_table WHERE prod_name LIKE '% ton anvil';
 ```
 
-输出结果：![](./like2.png)
+输出结果：![](../img/like2.png)
 
 > 注意事项：
 >

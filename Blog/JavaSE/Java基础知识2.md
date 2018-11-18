@@ -1,6 +1,16 @@
+---
+layout:     post
+title:      Java基础知识2
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
 # 基础知识2
-
-
 
 ## 接口
 

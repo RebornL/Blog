@@ -35,5 +35,5 @@ public MuService myService() {
 
 SpringBoot中提供的条件化注解
 
-![](./conditional.png)
+![](../img/conditional.png)
 

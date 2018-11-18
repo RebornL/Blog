@@ -1,3 +1,17 @@
+---
+layout:     post
+title:      IoC和DI学习记录
+subtitle:   
+date:       2018-10-31
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Spring
+    - Java Web
+---
+
+
 ### IoC的概念和DI的概念
 IoC：Inverse of Convert，控制反轉，比較難理解的概念，以後補充
 DI：Dependency Injection，依賴注入，讓調用類對某一接口實現的依賴關係由第三方（容器和協作類）注入，以移除調用類對某一接口實現類的依賴。
@@ -294,7 +308,7 @@ public class ResourceTest {
 
 #### 资源地址表达式
 
-![resource-lambda](./resource-lambda.png)
+![resource-lambda](../img/resource-lambda.png)
 
 > classpath:与classpath*: 的区别：前者只会在第一个加载的包下去查找，而后者会扫描所有这些JAR包和类路径下出现的包名。
 
@@ -319,7 +333,7 @@ for(Resource resource: resources) {
 
 BeanFactory是Spring最核心的接口，提供高级IoC配置机制，实现不同类型的Java对象，底层是基于Java的反射机制实现；ApplicationContext则是基于BeanFactory上建立的，便于创建应用，面向开发者。
 
-![ClassPathXmlApplicationContext](./ClassPathXmlApplicationContext.png)
+![ClassPathXmlApplicationContext](../img/ClassPathXmlApplicationContext.png)
 
 除了常见ClassPathXmlApplicationContext加载xml的配置文件之外，spring还提供一种java config的配置方式，使用注解和类编写方式，可以让开发者更好的控制。
 
@@ -373,15 +387,15 @@ public class AnnotationApplicationContext {
 
 #### Bean的生命周期
 
-![](./bean-lifecircle.png)
+![](../img/bean-lifecircle.png)
 
-![](./bean-lifecircle2.png)
+![](../img/bean-lifecircle2.png)
 
 
 
 #### spring容器，Bean配置信息，Bean实现类及应用程序的关系
 
-![](./springAndBean.png)
+![](../img/springAndBean.png)
 
 ### Spring的技术内幕
 
@@ -410,4 +424,4 @@ finishBeanFactoryInitialization(beanFactory);
 finishRefresh();
 ```
 
-![](./ioc-waterline.png)
+![](../img/ioc-waterline.png)

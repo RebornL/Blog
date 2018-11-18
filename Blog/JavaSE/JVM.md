@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      JVM笔记1
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+    - JVM
+---
+
 # JVM
 
 ## 运行时数据区域

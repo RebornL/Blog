@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Ubuntu下MariaDB配置
+subtitle:   
+date:       2018-03-03
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
 # MariaDB安装及远程登录设置
 
 ## 安装
@@ -48,7 +60,7 @@ systemctl restart mysql
 
 
 
-![MariaDB1](./MariaDB1.png)
+![MariaDB1](../img/MariaDB1.png)
 
 
 

@@ -1,3 +1,29 @@
+---
+layout:     post
+title:      MySQL进阶
+subtitle:   
+date:       2018-03-03
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - MySQL
+---
+
+
+
+# MySQL进阶
+
+
+
+[TOC]
+
+
+
+## 前言
+
+正则表达式过滤，计算字段，MySQL中的常用函数。
+
 REGEX -->与like的区别，^$实现like的功能
 
 ​	    --->BINARY区分大小写
@@ -31,29 +57,6 @@ MySQL中函数
 组合聚集函数
 
 ​	COUNT()，AVG()，MAX()，MIN()，DISTINCT关键字
-
-
-
-# MySQL进阶
-
-------
-
-**DATE: 2018-03-03**
-
-**Author: Reborn**
-
------
-
-
-
-[TOC]
-
-
-
-## 前言
-
-正则表达式过滤，计算字段，MySQL中的常用函数。
-
 
 
 ## 正则表达式过滤

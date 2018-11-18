@@ -1,9 +1,22 @@
+---
+layout:     post
+title:      排序算法(JavaScript版)
+subtitle:   排序算法(JavaScript版)
+date:       2016-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Alg
+    - JavaScript
+---
+
 # 经典排序算法
 
 ## 前话
 最近在做面试题和去面试的时候，都有被问到排序算法的内容。因此，特意记录一下。
 
-![algorithm](./algorithm.png)
+![algorithm](../img/algorithm.png)
 
 ## 冒泡排序
 原理：重复的走过需要排序的序列，然后一次比较两个元素，按照大小交换他们的位置，直到排序完成

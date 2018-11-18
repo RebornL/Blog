@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Java中Collection集合简记
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+---
+
 - ArrayList：内部采用数组实现，每次扩增在原来的基础上增加0.5倍，数组不被序列化，只序列化已有的值。
 
 - LinkedList：内部采用双向链表实现（JDK7/8后，取消用循环链表），查询的时候，根据index位置来选择从头开始遍历还是从尾部开始遍历。
@@ -16,8 +28,8 @@
 
   - 1.7版本
 
-  ![1.7](E:\Files\Blog\Blog\JavaSE\concurrentHashMap1.7.jpg)
+  ![1.7](../img/concurrentHashMap1.7.jpg)
 
   - 1.8版本
 
-  ![1.8](E:\Files\Blog\Blog\JavaSE\concurrentHashMap1.8.jpg)
+  ![1.8](../img/concurrentHashMap1.8.jpg)

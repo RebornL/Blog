@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      JVM笔记2
+subtitle:   
+date:       2018-11-10
+author:     Reborn
+header-img: img/post-bg-universe.jpg
+catalog: true
+tags:
+    - Java
+    - JVM
+---
+
 ### 类加载过程
 
 ![双亲委托机制](E:\Files\Blog\Blog\JavaSE\jvm3.jpg)
